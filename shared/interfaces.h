@@ -5,6 +5,7 @@
 #include <map>
 #include <vector>
 #include <cstdint>
+#include <memory>
 
 // ==========================================
 // 1. DATA TYPES (Shared by both A and B)
@@ -39,6 +40,25 @@ inline Record deserializeRecord(const std::string& s) {
     return r;
 }
 
+struct TxnStats {
+    double responseTimeMs;
+    bool committed;
+    int retryCount;
+    std::string protocol;
+    std::string txnType;
+    uint64_t timestampStart;
+    uint64_t timestampEnd;
+};
+
+struct WorkloadStats {
+    double totalTimeSeconds;
+    int totalCommitted;
+    int totalAborted;
+    int totalRetries;
+    double throughput;
+    double avgResponseTimeMs;
+    std::vector<TxnStats> perTxn;
+};
 // ==========================================
 // 2. TRANSACTION BASE CLASS (Person B implements this)
 // ==========================================
