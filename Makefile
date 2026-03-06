@@ -8,7 +8,7 @@ CXXFLAGS := -std=c++20 -I$(PROJECT_ROOT) -I$(ROCKSDB_INC)
 LDFLAGS := -L$(ROCKSDB_LIB) -lrocksdb -lpthread -lsnappy -lz -lbz2 -llz4 -lzstd
 
 # Add more .cpp files here as you create them
-SRCS := src_A/storage_layer.cpp main.cpp
+SRCS := src_A/storage_layer.cpp src_A/workload_parser.cpp src_A/hotset_selector.cpp src_A/stats_collector.cpp src_A/workload_runner.cpp src_A/occ_transaction.cpp src_A/occ_manager.cpp main.cpp
 
 .PHONY: all clean
 all: txn_system
