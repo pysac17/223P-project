@@ -59,7 +59,6 @@ def plot_metric(df, x_col, y_col, title, xlabel, ylabel, filename):
             
         plt.plot(subset[x_col], subset[y_col], marker='o', label=protocol)
 
-    plt.title(title)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
     plt.legend()
