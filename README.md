@@ -1,16 +1,46 @@
 ## Build Instructions
 1. Install RocksDB: sudo apt-get install librocksdb-dev  (or brew install rocksdb on Mac)
-2. Compile: g++ -std=c++17 -O2 -o txn_system main.cpp storage_layer.cpp workload_parser.cpp 
-            workload_runner.cpp hotset_selector.cpp stats_collector.cpp occ_transaction.cpp 
-            occ_manager.cpp lock_manager.cpp twopl_transaction.cpp twopl_manager.cpp 
-            livelock_prevention.cpp -lrocksdb -lpthread
+2. Compile: Using the Makefile (Recommended):
+```bash
+make
+```
+
+Or manually (note the paths to src_A and src_B folders):
+```bash
+g++ -std=c++17 -O2 -o txn_system main.cpp storage_layer.cpp workload_parser.cpp 
+    workload_runner.cpp hotset_selector.cpp stats_collector.cpp occ_transaction.cpp 
+    occ_manager.cpp lock_manager.cpp twopl_transaction.cpp twopl_manager.cpp 
+    livelock_prevention.cpp -lrocksdb -lpthread
+```
+
+## Input Data Preparation (IMPORTANT)
+The system requires a single input file containing both the initial data (INSERT block) and the transaction logic (WORKLOAD block).
+Since the provided data files are separate, you must combine them before running:
+
+```bash
+# Combine Workload 1
+cat data/input1.txt data/workload1.txt > data/full_workload1.txt
+
+# Combine Workload 2
+cat data/input2.txt data/workload2.txt > data/full_workload2.txt
+```
 
 ## How to Run
-./txn_system --protocol occ --threads 8 --hotset-size 10 --contention 0.5 
-             --workload workloads/workload1.txt --duration 30 --output results/run1.csv
-
+```bash
+# Example: Run 2PL on Workload 1
 ./txn_system --protocol 2pl --threads 8 --hotset-size 10 --contention 0.5 
-             --workload workloads/workload2.txt --duration 30 --output results/run2.csv
+             --workload data/full_workload1.txt --duration 30 --output results/run1.csv
+
+# Example: Run OCC on Workload 2
+./txn_system --protocol occ --threads 8 --hotset-size 10 --contention 0.5 
+             --workload data/full_workload2.txt --duration 30 --output results/run2.csv
+```
+
+## Directly run the executable
+```bash
+chmod +x run_experiments.sh
+./run_experiments.sh
+```
 
 ## Parameters
 --protocol      : occ or 2pl

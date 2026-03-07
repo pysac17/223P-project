@@ -1,0 +1,63 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+txn_system
+run_tests
+stress_test
+
+# Database Files (RocksDB generated data)
+db_data/
+*.log
+*.ldb
+LOCK
+MANIFEST
+CURRENT
+IDENTITY
+OPTIONS-*
+
+
+# Python Cache (for graph generation script)
+__pycache__/
+*.pyc
+
+# OS Generated Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE / Editor Folders
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
