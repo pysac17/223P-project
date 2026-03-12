@@ -1,0 +1,10 @@
+# RocksDB data (regenerated each run)
+db_data/
+
+# Large result CSVs (keep locally; share via drive/link if needed)
+results.csv
+experiments/*.csv
+
+# Build
+txn_system
+*.o

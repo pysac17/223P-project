@@ -28,8 +28,12 @@ struct ParsedWorkload {
 
 class WorkloadParser {
 public:
-    // Parse the file at path; return parsed workload or throw on error.
+    // Parse one file containing both INSERT and WORKLOAD blocks.
     ParsedWorkload parse(const std::string& filepath);
+    // Parse only INSERT block (e.g. data/input1.txt).
+    ParsedWorkload parseInsertOnly(const std::string& filepath);
+    // Parse only WORKLOAD block (e.g. data/workload1.txt).
+    ParsedWorkload parseWorkloadOnly(const std::string& filepath);
 };
 
 #endif
